@@ -1,0 +1,11 @@
+[Unit]
+Description=AirDrop Web: recibe archivos del iPhone por la red local
+
+[Service]
+ExecStart=/usr/bin/python3 @DIR@/server.py
+Restart=on-failure
+RestartSec=3
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=default.target

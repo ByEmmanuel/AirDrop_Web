@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Enviar a PC">
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="app.css">
+  <title>Enviar a PC</title>
+</head>
+<body>
+  <main class="app">
+    <header class="top">
+      <span class="dot" id="dot" title="Conectado"></span>
+      <div>
+        <p class="eyebrow">Enviar a</p>
+        <h1 id="host">esta PC</h1>
+      </div>
+    </header>
+
+    <label class="drop" for="file">
+      <input id="file" type="file" multiple aria-label="Elegir archivos">
+      <span class="orb" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3.5"/><path d="M7 8.5l5-5 5 5"/><path d="M4.5 14.5v3.5a2.5 2.5 0 0 0 2.5 2.5h10a2.5 2.5 0 0 0 2.5-2.5v-3.5"/></svg>
+      </span>
+      <strong>Toca para elegir</strong>
+      <span class="hint">Fotos, videos o documentos<span class="desk"> · o arrástralos aquí</span></span>
+    </label>
+
+    <section class="transfers" id="transfers" hidden>
+      <div class="transfers-head">
+        <h2>Transferencias</h2>
+        <span id="summary"></span>
+      </div>
+      <ul class="list" id="list"></ul>
+      <p class="keep" id="keep" hidden>Mantén esta pantalla abierta hasta que termine.</p>
+    </section>
+
+    <footer class="foot">
+      <p>Se guardan en <code id="dest">~/Downloads/AirDrop</code></p>
+      <button class="link" id="howto" type="button">Enviar desde el menú Compartir</button>
+    </footer>
+  </main>
+
+  <dialog class="sheet" id="sheet" lang="en">
+    <div class="sheet-body">
+      <div class="grabber" aria-hidden="true"></div>
+      <div class="sheet-head">
+        <h2>Share Sheet shortcut</h2>
+        <button class="close" id="close" type="button" aria-label="Close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <p class="muted">Set it up once, then send from any app with <b>Share → Send to PC</b>.</p>
+
+      <div class="copy">
+        <div class="url" id="shortcutUrl"></div>
+        <button type="button" id="copy">Copy</button>
+      </div>
+
+      <ol class="steps">
+        <li>Open <b>Shortcuts</b>, tap <b>+</b> and name it <b>Send to PC</b>.</li>
+        <li>Tap <b>ⓘ</b> to open <b>Details</b>, turn on <b>Show in Share Sheet</b> and tap <b>Done</b>.</li>
+        <li>Add <b>Repeat with Each</b>: it should repeat over <b>Shortcut Input</b>.</li>
+        <li>Inside the loop, add <b>Get Contents of URL</b> and paste the URL above (if it filled in <b>Repeat Item</b> as the URL, delete it).</li>
+        <li>Tap <b>Show More</b>: change <b>GET</b> to <b>POST</b>, set <b>Request Body</b> to <b>Form</b>, then <b>Add new field</b> → <b>File</b> with key <code>file</code> and value <b>Repeat Item</b>.</li>
+        <li>Use it: <b>Share</b> → scroll down → <b>Send to PC</b>.</li>
+      </ol>
+    </div>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
